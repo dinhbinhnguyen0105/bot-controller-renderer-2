@@ -1,0 +1,76 @@
+.row {
+    background-color: #fdfdfd;
+    border-bottom: 1px solid #e0e0e0;
+    transition: background-color 0.2s;
+}
+
+.row:hover {
+    background-color: #f1f1f1;
+}
+
+.row td {
+    padding: 10px;
+    font-size: 14px;
+    word-break: break-word;
+}
+
+.rowNO,
+.rowDate,
+.rowUID,
+.rowUsername,
+.rowType,
+.rowProxy {
+    text-align: left;
+}
+
+.rowGetname,
+.rowReelAndLike,
+.rowJoinGroups,
+.rowaddFriends,
+.rowPostNewFeed,
+.rowSellGroup {
+    text-align: center;
+}
+
+
+input[type="text"] {
+    width: 100%;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+    box-sizing: border-box;
+}
+
+input[type="text"]:focus {
+    border-color: #007bff;
+    outline: none;
+    box-shadow: 0 0 4px rgba(0, 123, 255, 0.5);
+}
+
+input[type="checkbox"] {
+    cursor: pointer;
+    transform: scale(1.2);
+}
+
+input[type="checkbox"]:checked {
+    accent-color: #007bff;
+}
+
+.rowActions {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* padding: 10px; */
+    cursor: pointer;
+}
+
+.rowActions svg {
+    transition: transform 0.3s;
+    /* width: 2rem;
+    height: 2rem; */
+}
+
+.rowActions svg:hover {
+    transform: scale(1.1);
+}

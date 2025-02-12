@@ -1,0 +1,94 @@
+.header {
+    background-color: #343a40;
+    color: white;
+    padding: 0 1.2rem;
+    height: 2.8rem;
+}
+
+.headerNav {
+    padding: 0.2rem 0;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.headerNav>ul {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    height: 100%;
+}
+
+.headerNavItem {
+    position: relative;
+    margin-right: 20px;
+    padding: 0 1.2rem;
+    text-transform: capitalize;
+}
+
+.headerNavItem:hover {
+    background-color: #495057;
+    border-radius: 4px;
+}
+
+.headerNavItem a {
+    text-decoration: none;
+    color: white;
+    transition: background-color 0.3s;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.headerItemUser:hover .userNav {
+    display: block;
+}
+
+.userNav::before {
+    content: "";
+    display: block;
+    top: -20%;
+    position: absolute;
+    width: 100%;
+    height: 2rem;
+    background-color: transparent;
+    z-index: -1;
+}
+
+.userNav {
+    display: none;
+    position: absolute;
+    padding: 0.2rem;
+    margin-top: 0.22rem;
+    top: 100%;
+    left: 0;
+    background-color: #343a40;
+    border-radius: 4px;
+    z-index: 1000;
+}
+
+.userNav:hover {
+    display: block;
+}
+
+.userNav>ul {}
+
+.userNavItem {
+    box-sizing: border-box;
+    list-style: none;
+    text-transform: capitalize;
+}
+
+.userNavItem:hover {
+    background-color: #495057;
+    border-radius: 4px;
+}
+
+.userNavItem a {
+    padding: 0.4rem 1rem;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+}
