@@ -1,45 +1,82 @@
-.config {
-    position: fixed;
-    background-color: rgba(0, 0, 0, 0.5);
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 2;
-    animation: fadeIn .1s ease-in-out;
-}
-
 .modalOverlay {
     position: fixed;
-    background-color: rgba(0, 0, 0, 0.5);
     top: 0;
+    left: 0;
     right: 0;
     bottom: 0;
-    left: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    /* Màu nền mờ */
     display: flex;
     justify-content: center;
     align-items: center;
     z-index: 1000;
-    animation: fadeIn .1s ease-in-out;
-}
-
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-    }
-
-    to {
-        opacity: 1;
-    }
+    font-size: 0.8rem;
+    /* Đảm bảo modal nằm trên các phần tử khác */
 }
 
 .modalContainer {
-    position: relative;
-    width: 480px;
-    height: auto;
+    background-color: white;
     border-radius: 8px;
-    background-color: #fff;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    width: 90%;
+    max-width: 600px;
+    /* Kích thước tối đa của modal */
+    padding: 1rem;
+    position: relative;
+}
+
+.header {
+    font-size: 1.5em;
+    margin-bottom: 20px;
+    text-align: center;
+    font-weight: bold;
+    text-transform: capitalize;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+th,
+td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+th {
+    background-color: #f2f2f2;
+}
+
+input[type="text"] {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    margin: 2px 0;
+}
+
+input[type="checkbox"] {
+    margin-right: 5px;
+}
+
+.footer {
+    text-align: right;
+}
+
+.footer button {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.footer button:hover {
+    background-color: #0056b3;
 }

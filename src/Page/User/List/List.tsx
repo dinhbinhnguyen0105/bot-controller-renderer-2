@@ -15,6 +15,7 @@ const List: React.FC = () => {
     const tableRef = useRef<HTMLTableElement>(null);
     const [displayConfig, setDisplayConfig] = useState<boolean>(false);
     const [selectedUser, setSelectedUser] = useState<User[]>([]);
+
     useEffect(() => {
         fetch("http://localhost:3000/user/list")
             .then(res => res.json())
@@ -134,7 +135,7 @@ const List: React.FC = () => {
             <ConfigModal isOpen={displayConfig} onClose={() => setDisplayConfig(false)} selectedUser={selectedUser} />
             <div className={styles.footer}>
                 <button onClick={handleEditClicked}>Config</button>
-                <button onClick={() => { }}>Run bot</button>
+                <button onDoubleClick={() => { }}>Run bot</button>
             </div>
         </div>
     )

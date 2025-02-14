@@ -8,22 +8,22 @@ interface User {
 }
 
 interface ConfigProps {
-    isOpen: boolean,
+    isOpen: boolean;
     onClose: () => void;
-    selectedUser: User[]
+    selectedUser: User[];
 }
 
-const ConfigModal: React.FC<ConfigProps> = ({ isOpen, onClose, selectedUser }) => {
+const ConfigModal: React.FC<ConfigProps> = ({ isOpen, onClose, selectedUser, }) => {
     const [actions, setActions] = useState<{
         getName: boolean,
-        reelAndLike: boolean | number,
+        reelAndLike: string,
         newsFeed: boolean,
-        joinGroup: boolean | {
+        joinGroup: {
             groupKeySearch: string,
-            count: number,
+            count: string,
         },
-        addFriend: boolean | number,
-        postNewsFeed: boolean | {
+        addFriend: string,
+        postNewsFeed: {
             pid: string,
             random: boolean,
             postInfo: {
@@ -31,7 +31,7 @@ const ConfigModal: React.FC<ConfigProps> = ({ isOpen, onClose, selectedUser }) =
                 images: string,
             }
         },
-        postGroupFeed: boolean | {
+        postGroupFeed: {
             pid: string,
             random: boolean,
             postInfo: {
@@ -39,7 +39,7 @@ const ConfigModal: React.FC<ConfigProps> = ({ isOpen, onClose, selectedUser }) =
                 images: string,
             }
         },
-        sellInGroup: boolean | {
+        sellInGroup: {
             pid: string,
             random: boolean,
             postInfo: {
@@ -49,24 +49,60 @@ const ConfigModal: React.FC<ConfigProps> = ({ isOpen, onClose, selectedUser }) =
         }
     }>({
         getName: false,
-        reelAndLike: false,
+        reelAndLike: "",
         newsFeed: false,
-        joinGroup: false,
-        addFriend: false,
-        postNewsFeed: false,
-        postGroupFeed: false,
-        sellInGroup: false
+        joinGroup: {
+            groupKeySearch: "",
+            count: ""
+        },
+        addFriend: "",
+        postNewsFeed: {
+            random: false,
+            pid: "",
+            postInfo: {
+                text: "",
+                images: "",
+            }
+        },
+        postGroupFeed: {
+            random: false,
+            pid: "",
+            postInfo: {
+                text: "",
+                images: "",
+            }
+        },
+        sellInGroup: {
+            random: false,
+            pid: "",
+            postInfo: {
+                text: "",
+                images: "",
+            }
+        },
     });
-
-    // interface InputChange {
-    //     field: string
-    // }
 
     const handleInputChange = (payload: Partial<typeof actions>) => {
         setActions(prevActions => ({
             ...prevActions,
             ...payload
         }));
+    };
+    const handleSaveBtn = () => {
+        const newData = selectedUser.map(item => ({
+            ...item,
+            actions: {
+                ...item.actions,
+                ...actions,
+            }
+        }));
+        Promise.all(newData.map(item =>
+            fetch(`http://localhost:3000/user/list/${item.info.uid}`, {
+                method: "PUT",
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ payload: item }),
+            })
+        )).then(() => onClose());
     }
 
     if (!isOpen) { return null; };
@@ -75,48 +111,91 @@ const ConfigModal: React.FC<ConfigProps> = ({ isOpen, onClose, selectedUser }) =
             <div className={styles.modalContainer} onClick={e => e.stopPropagation()}>
                 <div className={styles.header}>config action</div>
                 <table>
-                    <thead>
-                        <tr>
-                            <th>Field</th>
-                            <th>Value</th>
-                        </tr>
-                    </thead>
                     <tbody>
                         <tr>
                             <td>get name</td>
-                            <td><input type="checkbox" checked={actions.getName} onChange={(e) => handleInputChange({ getName: e.target.checked })} /></td>
+                            <td colSpan={3}><input type="checkbox" checked={actions.getName} onChange={(e) => handleInputChange({ getName: e.target.checked })} /></td>
                         </tr>
                         <tr>
                             <td>like reel</td>
-                            <td>
-                                <input type="checkbox" checked={typeof actions.reelAndLike === "number" ? actions.reelAndLike > 0 : actions.reelAndLike} onChange={(e) => handleInputChange({ reelAndLike: e.target.checked ? 1 : 0 })} />
+                            <td colSpan={3}>
+                                <input type="text" placeholder="Count ..." value={actions.reelAndLike} onChange={e => handleInputChange({ reelAndLike: e.target.value })} />
                             </td>
-                            {(typeof actions.reelAndLike === "number" ? actions.reelAndLike > 0 : actions.reelAndLike) && (
-                                <td><input type="text" placeholder="Count ..." onChange={e => handleInputChange({ reelAndLike: parseInt(e.target.value) })} /></td>
-                            )}
                         </tr>
                         <tr>
                             <td>new feed</td>
-                            <td>
+                            <td colSpan={3}>
                                 <input type="checkbox" checked={actions.newsFeed} onChange={(e) => handleInputChange({ newsFeed: e.target.checked })} />
                             </td>
                         </tr>
                         <tr>
                             <td>join group</td>
                             <td>
-                                <input type="checkbox" checked={typeof actions.joinGroup === 'boolean' ? actions.joinGroup : false} onChange={(e) => handleInputChange({ joinGroup: e.target.checked ? { groupKeySearch: '', count: 0 } : false })} />
+                                <input type="text" placeholder="Count ..." value={actions.joinGroup.count} onChange={e => handleInputChange({ joinGroup: { count: e.target.value, groupKeySearch: actions.joinGroup.groupKeySearch } })} />
                             </td>
-                            {(actions.joinGroup) && (
-                                <>
-                                    <td><input type="text" placeholder="Group search ..." /></td>
-                                    <td><input type="text" placeholder="Count ..." /></td>
-                                </>
-                            )}
+                            <td colSpan={2}>
+
+                                <input type="text" placeholder="Keyword ..." value={actions.joinGroup.groupKeySearch} onChange={e => handleInputChange({ joinGroup: { groupKeySearch: e.target.value, count: actions.joinGroup.count } })} />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>add friend</td>
+                            <td colSpan={3}>
+                                <input type="text" placeholder="Count ..." value={actions.addFriend} onChange={e => handleInputChange({ addFriend: e.target.value })} />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>post news feed</td>
+                            <td>
+                                <input type="checkbox" id="randForPostNewsFeed" checked={actions.postNewsFeed.random} onChange={e => handleInputChange({ postNewsFeed: { ...actions.postNewsFeed, random: e.target.checked } })} />
+                                <label htmlFor="randForPostNewsFeed">
+                                    random
+                                </label>
+                            </td>
+                            <td>
+                                <input type="text" placeholder="PID ..." value={actions.postNewsFeed.pid} onChange={e => handleInputChange({ postNewsFeed: { ...actions.postNewsFeed, pid: e.target.value } })} />
+                            </td>
+                            <td>
+                                <input type="text" placeholder="Text ..." value={actions.postNewsFeed.postInfo.text} onChange={e => handleInputChange({ postNewsFeed: { ...actions.postNewsFeed, postInfo: { ...actions.postNewsFeed.postInfo, text: e.target.value } } })} />
+                                <input type="text" placeholder="Images ..." value={actions.postNewsFeed.postInfo.images} onChange={e => handleInputChange({ postNewsFeed: { ...actions.postNewsFeed, postInfo: { ...actions.postNewsFeed.postInfo, images: e.target.value } } })} />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>post group feed</td>
+                            <td>
+                                <input type="checkbox" id="randPIDForPostGroupFeed" checked={actions.postGroupFeed.random} onChange={e => handleInputChange({ postGroupFeed: { ...actions.postGroupFeed, random: e.target.checked } })} />
+                                <label htmlFor="randPIDForPostGroupFeed">
+                                    random
+                                </label>
+                            </td>
+                            <td>
+                                <input type="text" placeholder="PID ..." value={actions.postGroupFeed.pid} onChange={e => handleInputChange({ postGroupFeed: { ...actions.postGroupFeed, pid: e.target.value } })} />
+                            </td>
+                            <td>
+                                <input type="text" placeholder="Text ..." value={actions.postGroupFeed.postInfo.text} onChange={e => handleInputChange({ postGroupFeed: { ...actions.postGroupFeed, postInfo: { ...actions.postGroupFeed.postInfo, text: e.target.value } } })} />
+                                <input type="text" placeholder="Images ..." value={actions.postGroupFeed.postInfo.images} onChange={e => handleInputChange({ postGroupFeed: { ...actions.postGroupFeed, postInfo: { ...actions.postGroupFeed.postInfo, images: e.target.value } } })} />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>sell in group</td>
+                            <td>
+                                <input type="checkbox" id="randPIDForSellInGroup" checked={actions.sellInGroup.random} onChange={e => handleInputChange({ sellInGroup: { ...actions.sellInGroup, random: e.target.checked } })} />
+                                <label htmlFor="randPIDForSellInGroup">
+                                    random
+                                </label>
+                            </td>
+                            <td>
+                                <input type="text" placeholder="PID ..." value={actions.sellInGroup.pid} onChange={e => handleInputChange({ sellInGroup: { ...actions.sellInGroup, pid: e.target.value } })} />
+                            </td>
+                            <td>
+                                <input type="text" placeholder="Text ..." value={actions.sellInGroup.postInfo.text} onChange={e => handleInputChange({ sellInGroup: { ...actions.sellInGroup, postInfo: { ...actions.sellInGroup.postInfo, text: e.target.value } } })} />
+                                <input type="text" placeholder="Images ..." value={actions.sellInGroup.postInfo.images} onChange={e => handleInputChange({ sellInGroup: { ...actions.sellInGroup, postInfo: { ...actions.sellInGroup.postInfo, images: e.target.value } } })} />
+                            </td>
                         </tr>
                     </tbody>
                 </table>
                 <div className={styles.footer}>
-
+                    <button onClick={handleSaveBtn}>Save</button>
                 </div>
             </div>
         </div>
