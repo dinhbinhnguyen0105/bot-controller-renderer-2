@@ -14,6 +14,10 @@
     word-break: break-word;
 }
 
+.row td button {
+    width: 100%;
+}
+
 .rowNO,
 .rowDate,
 .rowUID,
@@ -57,20 +61,73 @@ input[type="checkbox"]:checked {
     accent-color: #007bff;
 }
 
+.rowSelected {
+    text-align: center;
+}
+
 .rowActions {
+    cursor: pointer;
+    position: relative;
+    text-align: center;
+}
+
+.rowActions:hover .actionsMenu {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-    /* padding: 10px; */
-    cursor: pointer;
 }
 
 .rowActions svg {
     transition: transform 0.3s;
-    /* width: 2rem;
-    height: 2rem; */
+    width: 2rem;
+    height: 2rem;
 }
 
 .rowActions svg:hover {
     transform: scale(1.1);
+}
+
+.rowActions svg:hover path {
+    fill: #007bff;
+}
+
+.actionsMenu {
+    position: absolute;
+    display: none;
+    z-index: 1000;
+    padding: 0.4rem 0.4rem;
+    background-color: #fff;
+    box-shadow: 1px 1px 1px 1px #ccc;
+    border-radius: 4px;
+    left: 0;
+    transform: translateX(50%);
+}
+
+.actionItem {
+    /* padding: 0.8rem 1rem; */
+}
+
+.actionsMenu button {
+    all: unset;
+}
+
+.actionInfo:hover svg path {
+    fill: none;
+    stroke: #75E6DA;
+}
+
+.actionInfo:hover svg circle {
+    fill: none;
+    stroke: #75E6DA;
+}
+
+.actionEdit:hover svg path {
+    fill: none;
+    stroke: #18A558;
+}
+
+.actionDel:hover svg path {
+    fill: none;
+    stroke: #FF0000;
 }

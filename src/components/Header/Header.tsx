@@ -13,7 +13,7 @@ const Header: React.FC = () => {
                         <Link to={"/user"}>user</Link>
                         <ul className={styles.userNav}>
                             <li className={styles.userNavItem}><Link to={"/user/list"}>list</Link></li>
-                            <li className={styles.userNavItem}><Link to={"/user/detail"}>detail</Link></li>
+                            <li className={styles.userNavItem}><Link to={"/user/create"}>create</Link></li>
                             <li className={styles.userNavItem}><Link to={"/user/setting"}>setting</Link></li>
                         </ul>
                     </li>

@@ -1,0 +1,150 @@
+.modalOverlay {
+    position: fixed;
+    background-color: rgba(0, 0, 0, 0.5);
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    animation: fadeIn .1s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+.modalContainer {
+    position: relative;
+    width: 480px;
+    height: auto;
+    border-radius: 8px;
+    background-color: #fff;
+}
+
+.modalContent {
+    padding: 1rem 1rem;
+}
+
+.closeBtn {
+    display: none;
+    position: absolute;
+    margin: 8px;
+    background-color: transparent;
+    right: 0;
+    top: 0;
+    border: none;
+}
+
+.closeBtn svg {
+    width: 1rem;
+    height: 1rem;
+}
+
+.closeBtn:hover svg path {
+    stroke: #db1f48;
+}
+
+.closeBtn svg path {
+    stroke: rgba(0, 0, 0, .6);
+}
+
+.header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    border-bottom: 1px solid rgb(226, 229, 233);
+    padding-bottom: 0.6rem;
+}
+
+.header h3 {
+    margin: 0;
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+}
+
+.contentItem {
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    align-items: center;
+    width: 100%;
+    margin: 8px 0;
+}
+
+.itemTitle {
+    font-size: 0.84rem;
+    margin: 0;
+    font-weight: 700;
+    white-space: nowrap;
+    min-width: 30%;
+    text-align: left;
+}
+
+.itemContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+}
+
+.itemInputContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 4px;
+}
+
+.itemLabel {
+    font-size: 0.8rem;
+    font-weight: 500;
+    width: 3rem;
+}
+
+.itemInput {
+    height: 1.2rem;
+    width: 6rem;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+}
+
+.footer {
+    padding-top: 0.6rem;
+    margin-top: 1rem;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 4rem;
+    border-top: 1px solid rgb(226, 229, 233);
+}
+
+.footer button {
+    padding: 0.4rem 1.8rem;
+    border-radius: 8px;
+    border: none;
+    color: #fff;
+}
+
+.footer button:last-child {
+    background-color: rgba(32, 207, 36, 1);
+}
+
+.footer button:last-child:hover {
+    background-color: rgba(32, 207, 36, .7);
+}

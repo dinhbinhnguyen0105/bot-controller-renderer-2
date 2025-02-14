@@ -1,0 +1,124 @@
+[
+    [
+        {
+            "info": {
+                "date": "25-02-11",
+                "uid": "61567207847281",
+                "username": "Nguyen A",
+                "2fa": "",
+                "email": "",
+                "phone": "",
+                "status": "live",
+                "note": "",
+                "type": "takecare-g1",
+                "proxy": "1234561"
+            },
+            "actions": {
+                "getName": true,
+                "reelAndLike": true,
+                "joinGroups": true
+            }
+        },
+        {
+            "info": {
+                "date": "25-02-11",
+                "uid": "61567207847282",
+                "username": "Nguyen B",
+                "2fa": "",
+                "email": "",
+                "phone": "",
+                "status": "live",
+                "note": "",
+                "type": "takecare-g1"
+            },
+            "actions": {}
+        },
+        {
+            "info": {
+                "date": "25-02-11",
+                "uid": "61567207847283",
+                "username": "Nguyen C",
+                "2fa": "",
+                "email": "",
+                "phone": "",
+                "status": "live",
+                "note": "",
+                "type": "takecare-g1"
+            },
+            "actions": {}
+        },
+        {
+            "info": {
+                "date": "25-02-11",
+                "uid": "61567207847284",
+                "username": "Nguyen D",
+                "2fa": "",
+                "email": "",
+                "phone": "",
+                "status": "live",
+                "note": "",
+                "type": "takecare-g1"
+            },
+            "actions": {}
+        },
+        {
+            "info": {
+                "date": "25-02-11",
+                "uid": "61567207847285",
+                "username": "Nguyen E",
+                "2fa": "",
+                "email": "",
+                "phone": "",
+                "status": "live",
+                "note": "",
+                "type": "takecare-g1"
+            },
+            "actions": {}
+        },
+        {
+            "info": {
+                "date": "25-02-11",
+                "uid": "61567207847286",
+                "username": "Nguyen F",
+                "2fa": "",
+                "email": "",
+                "phone": "",
+                "status": "live",
+                "note": "",
+                "type": "takecare-g1"
+            },
+            "actions": {}
+        },
+        {
+            "info": {
+                "date": "25-02-12",
+                "uid": "61567207847287",
+                "username": "Nguyen G",
+                "2fa": "",
+                "email": "",
+                "phone": "",
+                "status": "live",
+                "note": "",
+                "type": "takecare-g1"
+            },
+            "actions": {}
+        },
+        {
+            "info": {
+                "date": "25-02-11",
+                "uid": "61567362557063",
+                "password": "_HW11235813",
+                "twoFA": "",
+                "email": "",
+                "phone": "",
+                "note": "",
+                "type": "takecare-g2",
+                "username": "Nguyen Salena"
+            },
+            "actions": {
+                "addFriendCount": "",
+                "addFriendSource": ""
+            }
+        }
+    ]
+]

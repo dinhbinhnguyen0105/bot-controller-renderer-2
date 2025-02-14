@@ -1,0 +1,36 @@
+.form {}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th,
+td {
+    padding: 0.4rem 1rem;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+    text-transform: capitalize;
+}
+
+th {
+    background-color: #f2f2f2;
+    text-align: center;
+}
+
+input[type="text"] {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+input[type="text"]:focus {
+    border-color: #007bff;
+    outline: none;
+}
+
+.footer {
+    text-align: right;
+}
